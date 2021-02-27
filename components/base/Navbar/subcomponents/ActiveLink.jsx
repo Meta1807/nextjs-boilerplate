@@ -6,14 +6,7 @@ import { useRouter } from 'next/router';
 // Code snippet for active navclass taken from: 
 // https://stackoverflow.com/questions/60324081/adding-active-class-for-nav-link-in-next-js
 
-interface NavLinkProps {
-  href: string,
-  as: string,
-  exact: Boolean,
-  children: ReactNode,
-}
-
-const NavLink: React.FC<NavLinkProps> = ({ href, as, exact, children, ...props }) => {
+const NavLink = ({ href, as, exact, children, ...props }) => {
   const { asPath } = useRouter();
   const segment = (p) => new URL(p, 'http://localhost:3000').pathname.split('/').filter(s => s);
   const currentPath = segment(asPath);

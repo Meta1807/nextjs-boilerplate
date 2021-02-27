@@ -11,8 +11,7 @@ import Saved from './icons/saved';
 interface menuItem {
   title: string,
   path: string,
-  icon: React.FC,
-  onClick: Function,
+  icon: React.ReactNode,
 }
 
 const menuItems: Array<menuItem> = [
