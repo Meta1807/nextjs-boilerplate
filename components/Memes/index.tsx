@@ -1,17 +1,15 @@
 import React from "react"
-import { useMemesQuery } from "../../generated/graphql"
 import tw from "twin.macro"
 
 // Component Imports
-import MemeCard from './subcomponents/MemeCard';
-import MemeContainer from '../base/MemeContainer';
+import MemeCard from '../base/Cards/MemeCard';
+import MemeContainer from '../base/Containers/MemeContainer';
 
 interface MemesProps {}
 
-export const Memes: React.FC<MemesProps> = ({}) => {
-  const { data, loading: memesLoading } = useMemesQuery()
+const Memes: React.FC<MemesProps> = ({}) => {
   return (
-    <div tw="min-h-screen flex flex-col justify-center items-center flex-wrap">
+    <div tw="flex flex-col items-center flex-wrap">
       <MemeContainer>
         {/* {memesLoading
           ? "loading.."
@@ -22,12 +20,9 @@ export const Memes: React.FC<MemesProps> = ({}) => {
               </div>
             ))} */} 
         <MemeCard />
-        <MemeCard />
-        <MemeCard />
-        <MemeCard />
-        <MemeCard />
-        <MemeCard />
       </MemeContainer>
     </div>
   )
 }
+
+export default Memes;

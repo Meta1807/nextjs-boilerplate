@@ -25,7 +25,7 @@ const menuItems: Array<menuItem> = [
     title: "Saved",
     path: "/saved",
     icon: <Saved />,
-  }
+  },
 ]
 
 const Navbar: React.FC = () => (
