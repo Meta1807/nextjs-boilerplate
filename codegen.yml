@@ -2,7 +2,7 @@ overwrite: true
 schema:
   - ${GRAPHQL_ENDPOINT:https://oprec-backend.compfest.id/v1/graphql}:
       headers:
-        x-hasura-admin-secret: ${HASURA_ADMIN_SECRET:compfest13}
+        Authorization: Bearer ${NEXT_PUBLIC_AUTH_TOKEN}
 documents: "./**/*.graphql"
 generates:
   ./generated/graphql.tsx:
