@@ -37,13 +37,12 @@ let initialToken: string
 const getAuthLink = (initialToken: string) => {
   return setContext((_, { headers }) => {
     // get the authentication token from local storage if it exists
-    const token = initialToken || nookies.get(null)?.token
+    const token = process.env.NEXT_PUBLIC_AUTH_TOKEN
     // return the headers to the context so httpLink can read them
     return {
       headers: {
         ...headers,
         authorization: token ? `Bearer ${token}` : "",
-        "x-hasura-admin-secret": "compfest13",
       },
     }
   })
