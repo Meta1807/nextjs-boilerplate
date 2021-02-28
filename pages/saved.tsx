@@ -1,8 +1,14 @@
+import React from 'react';
 import Head from "next/head";
+import { useRouter } from 'next/router';
 import tw from "twin.macro";
-import Saved from "../components/Saved/";
+import Saved from "@components/Saved/";
 
 export default function Home() {
+  const router = useRouter();
+  React.useEffect(() => {
+    console.log(router.route)
+  })
   return (
     <div>
       <Head>

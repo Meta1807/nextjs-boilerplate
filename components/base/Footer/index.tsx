@@ -2,7 +2,7 @@ import React from 'react';
 import tw from 'twin.macro';
 
 const SocialIcon: React.FC<{ src: string }> = ({ src }) => (
-  <img tw="w-8 mx-2" src={src} />
+  <img tw="w-7 mx-4" src={src} />
 )
 
 const Footer: React.FC = () => (
@@ -16,11 +16,11 @@ const Footer: React.FC = () => (
       </div>
       <div tw="flex items-center">
         <SocialIcon src="/icons/social/facebook.svg" />
-        <SocialIcon tw="w-8" src="/icons/social/twitter.svg" />
-        <SocialIcon tw="w-8" src="/icons/social/youtube.svg" />
-        <SocialIcon tw="w-8" src="/icons/social/instagram.svg" />
-        <SocialIcon tw="w-8" src="/icons/social/linkedin.svg" />
-        <SocialIcon tw="w-8" src="/icons/social/line.svg" />
+        <SocialIcon src="/icons/social/twitter.svg" />
+        <SocialIcon src="/icons/social/youtube.svg" />
+        <SocialIcon src="/icons/social/instagram.svg" />
+        <SocialIcon src="/icons/social/linkedin.svg" />
+        <SocialIcon src="/icons/social/line.svg" />
       </div>
       <p tw="text-gray-400">© 2021 ADRIAN ARDIZZA</p>
     </div>

@@ -1,8 +1,16 @@
 import React from "react";
 import tw from "twin.macro";
+import { motion } from "framer-motion";
 
-const MemeCard: React.FC = () => (
-  <div tw="max-w-sm select-none m-4">
+const MemeCard: React.FC<{ index: number }> = ({ index }) => (
+  <motion.div
+    tw="max-w-sm select-none m-4"
+    animate={{ opacity: 1.0 }}
+    exit={{ opacity: 0 }}
+    initial={{ opacity: 0 }}
+    transition={{ ease: "easeInOut", duration: 0.5, delay: 1.0 + (index * 0.25) }}
+    key={index}
+  >
     <img 
       tw="w-full h-80 object-cover rounded-lg" 
       src="https://i.kym-cdn.com/entries/icons/facebook/000/027/424/joke.jpg"
@@ -20,7 +28,7 @@ const MemeCard: React.FC = () => (
         <span>Save</span>
       </button>
     </div>
-  </div>
+  </motion.div>
 )
 
 export default MemeCard;
