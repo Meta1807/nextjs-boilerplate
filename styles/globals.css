@@ -1,9 +1,9 @@
 @variants responsive {
   .masonry {
     display: grid;
-    grid-gap: 2em; /* [1] Add some gap between rows and columns */
-    grid-template-columns: repeat( auto-fill, minmax( 200px, 1fr ) ); /* [2] Make columns adjust according to the available viewport */
-    grid-auto-rows: 250px; /* [3] Set the height for implicitly-created row track */
+    grid-gap: 2.5em;
+    grid-template-columns: repeat( auto-fill, minmax( 200px, 1fr ) );
+    grid-auto-rows: 250px;
   }
   .break-inside {
     break-inside: avoid;

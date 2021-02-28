@@ -20,7 +20,7 @@ const Memes: React.FC<MemesProps> = ({ search }) => {
   return (
     <>
       { !memesLoading && (
-        <div tw="flex flex-col items-center flex-wrap">
+        <div tw="flex flex-col items-center flex-wrap min-h-screen">
           <MemeContainer>
             {/* {memesLoading
               ? "loading.."

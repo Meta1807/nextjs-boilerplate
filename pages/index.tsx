@@ -1,13 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Head from "next/head"
 import tw from "twin.macro"
 import Memes from "@components/Memes/"
+import Search from "@components/base/Search";
 import { useRouter } from 'next/router';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Home() {
   const router = useRouter();
   const [search, setSearch] = useState('');
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      })
+    }, 5);
+    return () => clearTimeout(timer);
+  }, [search])
 
   return (
     <AnimatePresence>
@@ -23,25 +34,25 @@ export default function Home() {
         key={router.route}
       >
         <main
-          tw="flex flex-col my-16 min-h-screen"
+          css={[
+            tw`flex flex-col min-h-screen relative`,
+            !search && tw`justify-center`,
+            search && tw`my-16`,
+          ]}
         >
-          <div tw="my-10">
-            <h1 tw="font-bold text-4xl text-center mb-10">
-              Explore.
-            </h1>
-            <div tw="flex justify-center">
-              <div tw="w-1/4">
-                <input
-                  type="text"
-                  tw="border border-gray-400 py-2 px-2 w-full rounded-lg focus:(outline-none)"
-                  onChange={(e) => setSearch(e.target.value)}
-                  value={search}
-                  placeholder="search for memes ..."
-                />
-              </div>
+          <div css={[
+            tw`relative transition-transform transform w-full duration-500`,
+            !search && tw`translate-y-1/4`,
+            search && tw`translate-y-0 inset-y-16`,
+          ]}>
+            <div css={[search && tw`mb-8`]}>
+              <h1 tw="font-bold text-4xl text-center mb-8">
+                Explore.
+              </h1>
+              <Search search={search} searchHandler={setSearch} />
             </div>
+            { search && <Memes search={search} /> }
           </div>
-          <Memes search={search} />
         </main>
       </motion.div>
     </AnimatePresence>
