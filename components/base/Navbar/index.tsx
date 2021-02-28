@@ -28,7 +28,7 @@ const menuItems: Array<menuItem> = [
 ]
 
 const Navbar: React.FC = () => (
-  <div tw="fixed top-0 h-16 w-screen bg-white">
+  <div tw="fixed top-0 h-16 w-screen bg-white z-50">
     <div tw="flex items-center h-full px-16 justify-between">
       <Link href="/">
         <div tw="flex cursor-pointer">
@@ -38,7 +38,7 @@ const Navbar: React.FC = () => (
           </h1>
         </div>
       </Link>
-      <div tw="flex">
+      <div tw="hidden md:flex">
         { menuItems.map((item) => (
           <MenuButton
             name={item.title}

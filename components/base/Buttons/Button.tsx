@@ -10,7 +10,7 @@ const Button: React.FC<ButtonInterface> = ({ onClick = () => undefined, name, sr
     outline-none transform focus:(outline-none) hover:(scale-110)"
     onClick={() => onClick()}
   >
-    { src && <img src={src} tw="mr-2"></img> }
+    { src && <img src={src}></img> }
     <div tw="mr-2">
       { icon }
     </div>

@@ -1,3 +1,5 @@
+const plugin = require('tailwindcss/plugin')
+
 module.exports = {
   purge: [],
   darkMode: false, // or 'media' or 'class'
@@ -7,5 +9,18 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    plugin(function({ addUtilities }) {
+      const newUtilities = {
+        '.masonry': {
+          'column-count': '3',
+          'column-gap:': '2em',
+        },
+        'break-inside': {
+          'break-inside': 'avoid',
+        }
+      }
+      addUtilities(newUtilities, ['responsive', 'hover'])
+    })
+  ],
 }

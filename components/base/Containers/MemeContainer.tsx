@@ -14,7 +14,7 @@ const container = {
 
 const MemeContainer: React.FC<{ children: ReactNode} > = ({ children }) => (
   <motion.div
-    tw="flex justify-center items-center flex-wrap px-8"
+    tw="px-8 md:masonry"
     variants={container}
     initial="hidden"
     animate="show"

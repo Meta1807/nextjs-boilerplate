@@ -15,7 +15,7 @@ const App = ({ Component, pageProps }: AppProps) => {
       <ChakraProvider>
         <ApolloProvider client={apolloClient}>
           <Navbar />
-            <Component {...pageProps} />
+          <Component {...pageProps} />
           <Footer />
         </ApolloProvider>
       </ChakraProvider>
