@@ -34,7 +34,8 @@ const Saved: React.FC = ({}) => {
                 {!memesLoading &&
                   data?.users_by_pk.user_memes.map((item, index) => (
                     <MemeCard
-                      key={index}
+                      index={index}
+                      key={item.meme.id}
                       id={item.meme.id}
                       uid={data?.users_by_pk.id}
                       src={item.meme.image_url}

@@ -1,13 +1,11 @@
-import React from 'react';
-import Link from 'next/link';
-import tw from 'twin.macro';
+import React from "react"
+import Link from "next/link"
+import tw from "twin.macro"
 
 const NoSaved: React.FC = () => (
   <div tw="w-full px-8 lg:px-36 select-none">
-    <div
-      tw="flex flex-col justify-center items-center flex-wrap bg-gray-200 w-full rounded-lg py-16"
-    >
-      <p tw="mb-2.5 text-gray-400 text-lg">
+    <div tw="flex flex-col justify-center items-center flex-wrap bg-gray-200 w-full rounded-lg py-16">
+      <p tw="mb-2.5 mx-4 text-center text-gray-400 text-lg">
         You have no saved memes. Explore now!
       </p>
       <Link href="/">
@@ -23,4 +21,4 @@ const NoSaved: React.FC = () => (
   </div>
 )
 
-export default NoSaved;
+export default NoSaved

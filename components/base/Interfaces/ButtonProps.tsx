@@ -1,4 +1,5 @@
 import React from "react"
+import { TwStyle } from "twin.macro"
 
 export default interface ButtonProps {
   onClick?: Function
@@ -6,4 +7,6 @@ export default interface ButtonProps {
   src?: string
   icon?: React.ReactNode
   disabled?: boolean
+  active?: Boolean
+  activeClasses?: TwStyle
 }

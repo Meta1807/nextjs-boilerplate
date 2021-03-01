@@ -44,8 +44,9 @@ const Memes: React.FC<MemesProps> = ({ search }) => {
                   </div>
                 ))} */}
             <AnimatePresence>
-              {filterData(search, data)?.map(item => (
+              {filterData(search, data)?.map((item, index) => (
                 <MemeCard
+                  index={index}
                   id={item.id}
                   uid={userData?.data?.users_by_pk.id}
                   key={item.id}

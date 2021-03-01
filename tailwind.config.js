@@ -4,7 +4,13 @@ module.exports = {
   purge: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        orange: {
+          accent: "#FF9500",
+        },
+      },
+    },
   },
   variants: {
     extend: {},

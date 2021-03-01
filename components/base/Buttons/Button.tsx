@@ -9,11 +9,15 @@ const Button: React.FC<ButtonInterface> = ({
   src,
   icon,
   disabled,
+  active,
+  activeClasses,
 }) => (
   <motion.button
     type="button"
-    tw="m-3 font-bold flex justify-center items-center transition-all ease-in-out duration-200 
-    outline-none transform focus:(outline-none)"
+    css={[
+      tw`m-3 font-bold flex justify-center items-center transition-all ease-in-out duration-200 outline-none transform focus:(outline-none)`,
+      active && activeClasses,
+    ]}
     onClick={() => onClick()}
     disabled={disabled}
     transition={{ duration: 0.05 }}
