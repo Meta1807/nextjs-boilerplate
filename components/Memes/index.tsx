@@ -13,8 +13,8 @@ import { motion, AnimatePresence } from "framer-motion"
 import MemeCard from "@components/base/Cards/MemeCard"
 import MemeContainer from "@components/base/Containers/MemeContainer"
 
-const filterData = (word, data: MemesQuery) => {
-  const re = new RegExp(word, "i")
+const filterData = (word: string, data: MemesQuery) => {
+  const re = new RegExp(word.replace(/\\/g, "\\\\"), "i")
   return data?.memes.filter(item => item.title.match(re))
 }
 

@@ -13,10 +13,14 @@ const container = {
 
 const MemeContainer: React.FC<{ children: ReactNode }> = ({ children }) => (
   <motion.div
-    tw="px-8 md:masonry"
+    tw="px-8 md:masonry-3 lg:px-16 lg:masonry-4"
     variants={container}
     initial="hidden"
     animate="show"
+    exit="hidden"
+    transition={{
+      duration: 0.5,
+    }}
   >
     {children}
   </motion.div>
