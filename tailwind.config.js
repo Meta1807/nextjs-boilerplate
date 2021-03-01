@@ -29,6 +29,11 @@ module.exports = {
         "break-inside": {
           "break-inside": "avoid",
         },
+        noblur: {
+          "backface-visibility": "hidden",
+          "-webkit-font-smoothing": "subpixel-antialised",
+          transform: "translateZ(0)",
+        },
       }
       addUtilities(newUtilities, ["responsive", "hover"])
     }),
