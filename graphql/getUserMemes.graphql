@@ -1,0 +1,17 @@
+query getUser($id: uuid!) {
+  users_by_pk(id: $id) {
+    id
+    name
+    user_memes {
+      meme_id
+      meme {
+        id
+        title
+        description
+        image_url
+      }
+      created_at
+      updated_at
+    }
+  }
+}

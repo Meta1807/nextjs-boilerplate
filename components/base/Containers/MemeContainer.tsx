@@ -1,18 +1,17 @@
-import React, { ReactNode } from 'react';
-import { motion } from 'framer-motion';
-import tw from 'twin.macro';
+import React, { ReactNode } from "react"
+import { motion } from "framer-motion"
+import tw from "twin.macro"
 
 const container = {
-  hidden: { opacity: 0 },
+  hidden: {
+    opacity: 0,
+  },
   show: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.5,
-    }
-  }
+  },
 }
 
-const MemeContainer: React.FC<{ children: ReactNode} > = ({ children }) => (
+const MemeContainer: React.FC<{ children: ReactNode }> = ({ children }) => (
   <motion.div
     tw="px-8 md:masonry"
     variants={container}
@@ -23,4 +22,4 @@ const MemeContainer: React.FC<{ children: ReactNode} > = ({ children }) => (
   </motion.div>
 )
 
-export default MemeContainer;
+export default MemeContainer

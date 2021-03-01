@@ -1,0 +1,10 @@
+mutation InsertMemes($meme: user_memes_insert_input!) {
+  insert_user_memes_one(object: $meme) {
+    meme {
+      id
+      title
+      image_url
+      description
+    }
+  }
+}

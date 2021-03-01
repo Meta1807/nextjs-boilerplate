@@ -1,7 +1,15 @@
 query Memes {
   memes {
+    id
     title
     image_url
     description
+    user_memes {
+      user {
+        id
+      }
+      created_at
+      updated_at
+    }
   }
 }

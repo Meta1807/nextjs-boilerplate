@@ -1,0 +1,7 @@
+mutation DeleteMeme($meme_id: Int!, $user_id: uuid!) {
+  delete_user_memes_by_pk(user_id: $user_id, meme_id: $meme_id) {
+    meme {
+      id
+    }
+  }
+}

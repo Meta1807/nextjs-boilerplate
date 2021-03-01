@@ -502,6 +502,60 @@ export type Uuid_Comparison_Exp = {
   _nin?: Maybe<Array<Scalars['uuid']>>;
 };
 
+export type DeleteMemeMutationVariables = Exact<{
+  meme_id: Scalars['Int'];
+  user_id: Scalars['uuid'];
+}>;
+
+
+export type DeleteMemeMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_user_memes_by_pk?: Maybe<(
+    { __typename?: 'user_memes' }
+    & { meme: (
+      { __typename?: 'memes' }
+      & Pick<Memes, 'id'>
+    ) }
+  )> }
+);
+
+export type GetUserQueryVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type GetUserQuery = (
+  { __typename?: 'query_root' }
+  & { users_by_pk?: Maybe<(
+    { __typename?: 'users' }
+    & Pick<Users, 'id' | 'name'>
+    & { user_memes: Array<(
+      { __typename?: 'user_memes' }
+      & Pick<User_Memes, 'meme_id' | 'created_at' | 'updated_at'>
+      & { meme: (
+        { __typename?: 'memes' }
+        & Pick<Memes, 'id' | 'title' | 'description' | 'image_url'>
+      ) }
+    )> }
+  )> }
+);
+
+export type InsertMemesMutationVariables = Exact<{
+  meme: User_Memes_Insert_Input;
+}>;
+
+
+export type InsertMemesMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_user_memes_one?: Maybe<(
+    { __typename?: 'user_memes' }
+    & { meme: (
+      { __typename?: 'memes' }
+      & Pick<Memes, 'id' | 'title' | 'image_url' | 'description'>
+    ) }
+  )> }
+);
+
 export type MemesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -509,17 +563,150 @@ export type MemesQuery = (
   { __typename?: 'query_root' }
   & { memes: Array<(
     { __typename?: 'memes' }
-    & Pick<Memes, 'title' | 'image_url' | 'description'>
+    & Pick<Memes, 'id' | 'title' | 'image_url' | 'description'>
+    & { user_memes: Array<(
+      { __typename?: 'user_memes' }
+      & Pick<User_Memes, 'created_at' | 'updated_at'>
+      & { user: (
+        { __typename?: 'users' }
+        & Pick<Users, 'id'>
+      ) }
+    )> }
   )> }
 );
 
 
+export const DeleteMemeDocument = gql`
+    mutation DeleteMeme($meme_id: Int!, $user_id: uuid!) {
+  delete_user_memes_by_pk(user_id: $user_id, meme_id: $meme_id) {
+    meme {
+      id
+    }
+  }
+}
+    `;
+export type DeleteMemeMutationFn = Apollo.MutationFunction<DeleteMemeMutation, DeleteMemeMutationVariables>;
+
+/**
+ * __useDeleteMemeMutation__
+ *
+ * To run a mutation, you first call `useDeleteMemeMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteMemeMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteMemeMutation, { data, loading, error }] = useDeleteMemeMutation({
+ *   variables: {
+ *      meme_id: // value for 'meme_id'
+ *      user_id: // value for 'user_id'
+ *   },
+ * });
+ */
+export function useDeleteMemeMutation(baseOptions?: Apollo.MutationHookOptions<DeleteMemeMutation, DeleteMemeMutationVariables>) {
+        return Apollo.useMutation<DeleteMemeMutation, DeleteMemeMutationVariables>(DeleteMemeDocument, baseOptions);
+      }
+export type DeleteMemeMutationHookResult = ReturnType<typeof useDeleteMemeMutation>;
+export type DeleteMemeMutationResult = Apollo.MutationResult<DeleteMemeMutation>;
+export type DeleteMemeMutationOptions = Apollo.BaseMutationOptions<DeleteMemeMutation, DeleteMemeMutationVariables>;
+export const GetUserDocument = gql`
+    query getUser($id: uuid!) {
+  users_by_pk(id: $id) {
+    id
+    name
+    user_memes {
+      meme_id
+      meme {
+        id
+        title
+        description
+        image_url
+      }
+      created_at
+      updated_at
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetUserQuery__
+ *
+ * To run a query within a React component, call `useGetUserQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetUserQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetUserQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetUserQuery(baseOptions: Apollo.QueryHookOptions<GetUserQuery, GetUserQueryVariables>) {
+        return Apollo.useQuery<GetUserQuery, GetUserQueryVariables>(GetUserDocument, baseOptions);
+      }
+export function useGetUserLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetUserQuery, GetUserQueryVariables>) {
+          return Apollo.useLazyQuery<GetUserQuery, GetUserQueryVariables>(GetUserDocument, baseOptions);
+        }
+export type GetUserQueryHookResult = ReturnType<typeof useGetUserQuery>;
+export type GetUserLazyQueryHookResult = ReturnType<typeof useGetUserLazyQuery>;
+export type GetUserQueryResult = Apollo.QueryResult<GetUserQuery, GetUserQueryVariables>;
+export const InsertMemesDocument = gql`
+    mutation InsertMemes($meme: user_memes_insert_input!) {
+  insert_user_memes_one(object: $meme) {
+    meme {
+      id
+      title
+      image_url
+      description
+    }
+  }
+}
+    `;
+export type InsertMemesMutationFn = Apollo.MutationFunction<InsertMemesMutation, InsertMemesMutationVariables>;
+
+/**
+ * __useInsertMemesMutation__
+ *
+ * To run a mutation, you first call `useInsertMemesMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useInsertMemesMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [insertMemesMutation, { data, loading, error }] = useInsertMemesMutation({
+ *   variables: {
+ *      meme: // value for 'meme'
+ *   },
+ * });
+ */
+export function useInsertMemesMutation(baseOptions?: Apollo.MutationHookOptions<InsertMemesMutation, InsertMemesMutationVariables>) {
+        return Apollo.useMutation<InsertMemesMutation, InsertMemesMutationVariables>(InsertMemesDocument, baseOptions);
+      }
+export type InsertMemesMutationHookResult = ReturnType<typeof useInsertMemesMutation>;
+export type InsertMemesMutationResult = Apollo.MutationResult<InsertMemesMutation>;
+export type InsertMemesMutationOptions = Apollo.BaseMutationOptions<InsertMemesMutation, InsertMemesMutationVariables>;
 export const MemesDocument = gql`
     query Memes {
   memes {
+    id
     title
     image_url
     description
+    user_memes {
+      user {
+        id
+      }
+      created_at
+      updated_at
+    }
   }
 }
     `;

@@ -29,11 +29,11 @@ const menuItems: Array<menuItem> = [
 
 const Navbar: React.FC = () => (
   <div tw="fixed top-0 h-16 w-screen bg-white z-50">
-    <div tw="flex items-center h-full px-16 justify-between">
+    <div tw="flex items-center h-full px-8 md:px-16 justify-between">
       <Link href="/">
         <div tw="flex cursor-pointer">
           <img src="/icons/nav/logo.svg" tw="mr-1.5"></img>
-          <h1 tw="uppercase text-gray-600 font-bold select-none">
+          <h1 tw="hidden md:block uppercase text-gray-600 font-bold select-none">
             Kesegaran.Compfest
           </h1>
         </div>
