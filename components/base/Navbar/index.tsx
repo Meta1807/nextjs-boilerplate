@@ -1,17 +1,17 @@
-import React from 'react';
-import Link from 'next/link';
-import tw from 'twin.macro';
+import React from "react"
+import Link from "next/link"
+import tw from "twin.macro"
 
-import MenuButton from './subcomponents/MenuButton';
+import MenuButton from "./subcomponents/MenuButton"
 
-// Icons exported from tsx as inline-svg to allow use of fill-current 
-import Explore from './icons/explore';
-import Saved from './icons/saved';
+// Icons exported from tsx as inline-svg to allow use of fill-current
+import Explore from "./icons/explore"
+import Saved from "./icons/saved"
 
 interface menuItem {
-  title: string,
-  path: string,
-  icon: React.ReactNode,
+  title: string
+  path: string
+  icon: React.ReactNode
 }
 
 const menuItems: Array<menuItem> = [
@@ -39,8 +39,9 @@ const Navbar: React.FC = () => (
         </div>
       </Link>
       <div tw="hidden md:flex">
-        { menuItems.map((item) => (
+        {menuItems.map((item, index) => (
           <MenuButton
+            key={index}
             name={item.title}
             path={item.path}
             icon={item.icon}

@@ -1,7 +1,9 @@
 import React from "react"
-import { useGetUserQuery } from "../../generated/graphql"
 import tw from "twin.macro"
 import { AnimatePresence } from "framer-motion"
+
+// Query Imports
+import { useGetUserQuery } from "@generated/graphql"
 
 // Component Imports
 import NoSaved from "./subcomponents/NoSaved"
@@ -9,7 +11,7 @@ import MemeContainer from "@components/base/Containers/MemeContainer"
 import MemeCard from "@components/base/Cards/MemeCard"
 
 const Saved: React.FC = ({}) => {
-  const { data, loading: memesLoading } = useGetUserQuery({
+  const { data, loading: userLoading } = useGetUserQuery({
     variables: {
       id: "343d5987-306a-4815-8dcb-fa2fd0ff523b",
     },
@@ -22,16 +24,8 @@ const Saved: React.FC = ({}) => {
         ) : (
           <div tw="flex flex-col items-center flex-wrap min-h-screen">
             <MemeContainer>
-              {/* {memesLoading
-              ? "loading.."
-              : data?.memes.map(meme => (
-                  <div>
-                    <h1 tw="uppercase font-bold text-base">{meme.title}</h1>
-                    <img tw="w-40" src={meme.image_url} />
-                  </div>
-                ))} */}
               <AnimatePresence>
-                {!memesLoading &&
+                {!userLoading &&
                   data?.users_by_pk.user_memes.map((item, index) => (
                     <MemeCard
                       index={index}

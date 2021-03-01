@@ -14,9 +14,16 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "paths": {
-      "@components/*": ["./components/*"]
+      "@components/*": ["./components/*"],
+      "@generated/*": ["./generated/*"]
     }
   },
-  "include": ["next-env.d.ts", "twin.d.ts", "**/*.ts", "**/*.tsx", "components/base/Navbar/subcomponents/ActiveLink.jsx"],
-  "exclude": ["node_modules"],
+  "include": [
+    "next-env.d.ts",
+    "twin.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "components/base/Navbar/subcomponents/ActiveLink.jsx"
+  ],
+  "exclude": ["node_modules"]
 }

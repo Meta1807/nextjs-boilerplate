@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react"
 import tw from "twin.macro"
 import { motion, Variants } from "framer-motion"
-import {
-  useInsertMemesMutation,
-  useDeleteMemeMutation,
-  MemesDocument,
-  GetUserDocument,
-  GetUserQuery,
-} from "../../../generated/graphql"
 
-import Button from "../Buttons/Button"
-import SaveIcon from "../Navbar/icons/saved"
+// Query Imports
+import { insertMeme, deleteMeme } from "./functions/mutations"
+
+// Handler Imports
 import { onHover, onLeave } from "./handlers/hover"
+import clickHandler from "./handlers/clickHandler"
+
+// Component Imports
+import Button from "@components/base/Buttons/Button"
+import SaveIcon from "@components/base/Navbar/icons/saved"
 
 interface MemeCardInterface {
   index: number
@@ -26,58 +26,24 @@ interface MemeCardInterface {
 const MemeCard: React.FC<MemeCardInterface> = ({
   index,
   id,
-  uid,
   src,
   title,
   description,
   saved,
 }) => {
   const [delayTimer, setDelayTimer] = useState(null)
-  const [doubleTap, setDoubleTap] = useState(false)
-  const [doubleTapTimer, setDoubleTapTimer] = useState(null)
   const [hovered, setHovered] = useState(false)
-  const [insertMemes, insertResult] = useInsertMemesMutation({
-    variables: {
-      meme: {
-        meme_id: id,
-        user_id: "343d5987-306a-4815-8dcb-fa2fd0ff523b",
-      },
-    },
-    refetchQueries: [
-      {
-        query: GetUserDocument,
-        variables: {
-          id: uid,
-        },
-      },
-    ],
-  })
-  const [deleteMemes, deleteResult] = useDeleteMemeMutation({
-    variables: {
-      user_id: uid,
-      meme_id: id,
-    },
-    refetchQueries: [
-      {
-        query: GetUserDocument,
-        variables: {
-          id: uid,
-        },
-      },
-    ],
-  })
+  const [saveMeme, insertResult] = insertMeme(
+    "343d5987-306a-4815-8dcb-fa2fd0ff523b",
+    id
+  )
+  const [removeMeme, deleteResult] = deleteMeme(
+    "343d5987-306a-4815-8dcb-fa2fd0ff523b",
+    id
+  )
+  const loading = !insertResult.loading && !deleteResult.loading
 
-  const clickHandler = () => {
-    if (!insertResult.loading && !deleteResult.loading) {
-      if (!saved) {
-        insertMemes()
-      } else {
-        deleteMemes()
-      }
-    }
-  }
-
-  const variants: Variants = {
+  const animationVariants: Variants = {
     initial: {
       opacity: 0,
     },
@@ -101,7 +67,7 @@ const MemeCard: React.FC<MemeCardInterface> = ({
   return (
     <motion.div
       tw="relative max-w-sm select-none mb-8 break-inside"
-      variants={variants}
+      variants={animationVariants}
       animate="show"
       initial="initial"
       exit="exit"
@@ -132,7 +98,7 @@ const MemeCard: React.FC<MemeCardInterface> = ({
             <Button
               name={saved ? "Saved" : "Save"}
               icon={<SaveIcon />}
-              onClick={() => clickHandler()}
+              onClick={() => clickHandler(loading, saved, saveMeme, removeMeme)}
               active={saved}
               activeClasses={tw`text-orange-accent`}
             />

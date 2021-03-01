@@ -1,16 +1,17 @@
-import React, { useState, useEffect, useRef } from "react"
+import React, { useState, useEffect } from "react"
 import Head from "next/head"
 import tw from "twin.macro"
 import Memes from "@components/Memes/"
 import Search from "@components/base/Search"
 import { useRouter } from "next/router"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 
 export default function Home() {
   const router = useRouter()
   const [search, setSearch] = useState("")
 
   useEffect(() => {
+    // Reset scroll to y=0 when translation of searchbar occurs
     const timer = setTimeout(() => {
       window.scrollTo({
         top: 0,

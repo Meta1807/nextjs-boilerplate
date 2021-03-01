@@ -10,11 +10,19 @@ module.exports = {
       },
     ],
   ],
-  plugins: ["@emotion/babel-plugin", "babel-plugin-macros", ["module-resolver", {
-    "root": "./",
-    "alias": {
-      "@components": "./components",
-      "@styles": "./styles",
-    }
-  }]],
-};
+  plugins: [
+    "@emotion/babel-plugin",
+    "babel-plugin-macros",
+    [
+      "module-resolver",
+      {
+        root: "./",
+        alias: {
+          "@components": "./components",
+          "@styles": "./styles",
+          "@generated": "./generated",
+        },
+      },
+    ],
+  ],
+}

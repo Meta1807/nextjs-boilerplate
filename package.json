@@ -7,7 +7,7 @@
     "dev:nogen": "next dev",
     "build": "next build",
     "start": "next start",
-    "gen": "export $(cat .env.local | xargs) && graphql-codegen --config codegen.yml"
+    "gen": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
     "@apollo/client": "^3.3.7",
