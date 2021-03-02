@@ -16,11 +16,6 @@ const filterData = (word: string, data: MemesQuery) => {
 }
 
 const Memes: React.FC<{ search: string }> = ({ search }) => {
-  const [selected, setSelected] = useState({
-    imageLink: "",
-    memeTitle: "",
-    memeId: "",
-  })
   const { data, loading: memesLoading } = useMemesQuery()
   const userData = useGetUserQuery({
     variables: {
