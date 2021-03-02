@@ -27,6 +27,7 @@ export default function Home() {
         <title>Kesegaran Compfest - Explore</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       <motion.div
         animate={{ opacity: 1.0 }}
         exit={{ opacity: 0 }}

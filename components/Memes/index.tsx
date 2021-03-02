@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import tw from "twin.macro"
 import { AnimatePresence } from "framer-motion"
 
@@ -16,6 +16,11 @@ const filterData = (word: string, data: MemesQuery) => {
 }
 
 const Memes: React.FC<{ search: string }> = ({ search }) => {
+  const [selected, setSelected] = useState({
+    imageLink: "",
+    memeTitle: "",
+    memeId: "",
+  })
   const { data, loading: memesLoading } = useMemesQuery()
   const userData = useGetUserQuery({
     variables: {

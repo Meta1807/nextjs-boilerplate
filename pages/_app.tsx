@@ -1,8 +1,11 @@
+import React, { useState } from "react"
 import type { AppProps } from "next/app"
 import { GlobalStyles } from "twin.macro"
 import { ChakraProvider } from "@chakra-ui/react"
 import { useApollo } from "../lib/apolloClient"
 import { ApolloProvider } from "@apollo/client"
+import { ModalProvider } from "@components/base/Modal/ModalContext"
+import Modal from "@components/base/Modal/Modal"
 import Navbar from "@components/base/Navbar"
 import Footer from "@components/base/Footer"
 
@@ -13,9 +16,12 @@ const App = ({ Component, pageProps }: AppProps) => {
       <GlobalStyles />
       <ChakraProvider>
         <ApolloProvider client={apolloClient}>
-          <Navbar />
-          <Component {...pageProps} />
-          <Footer />
+          <ModalProvider>
+            <Modal />
+            <Navbar />
+            <Component {...pageProps} />
+            <Footer />
+          </ModalProvider>
         </ApolloProvider>
       </ChakraProvider>
     </div>

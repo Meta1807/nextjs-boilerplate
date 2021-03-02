@@ -1,6 +1,6 @@
 import React from "react"
 import tw from "twin.macro"
-import { AnimatePresence } from "framer-motion"
+import { AnimatePresence, motion, Variants } from "framer-motion"
 
 // Query Imports
 import { useGetUserQuery } from "@generated/graphql"
@@ -10,6 +10,25 @@ import NoSaved from "./subcomponents/NoSaved"
 import MemeContainer from "@components/base/Containers/MemeContainer"
 import MemeCard from "@components/base/Cards/MemeCard"
 
+const animationStates: Variants = {
+  base: {
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      delay: 0.5,
+    },
+  },
+  start: {
+    opacity: 0,
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      duration: 0.5,
+    },
+  },
+}
+
 const Saved: React.FC = ({}) => {
   const { data, loading: userLoading } = useGetUserQuery({
     variables: {
@@ -18,7 +37,13 @@ const Saved: React.FC = ({}) => {
   })
   return (
     <AnimatePresence>
-      <div tw="flex flex-col items-center flex-wrap">
+      <motion.div
+        tw="flex flex-col items-center flex-wrap"
+        variants={animationStates}
+        initial="start"
+        animate="base"
+        exit="exit"
+      >
         {data?.users_by_pk.user_memes.length === 0 ? (
           <NoSaved />
         ) : (
@@ -42,7 +67,7 @@ const Saved: React.FC = ({}) => {
             </MemeContainer>
           </div>
         )}
-      </div>
+      </motion.div>
     </AnimatePresence>
   )
 }

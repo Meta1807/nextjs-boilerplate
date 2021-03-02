@@ -28,7 +28,7 @@ const menuItems: Array<menuItem> = [
 ]
 
 const Navbar: React.FC = () => (
-  <div tw="fixed top-0 h-16 w-screen bg-white z-50">
+  <div tw="fixed top-0 h-16 w-screen bg-white z-40">
     <div tw="flex items-center h-full px-8 md:px-16 justify-between">
       <Link href="/">
         <div tw="flex cursor-pointer">
